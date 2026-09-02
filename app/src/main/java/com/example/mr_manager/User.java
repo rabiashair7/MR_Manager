@@ -2,77 +2,77 @@ package com.example.mr_manager;
 
 public class User {
 
-        private String uid;
-        private String firstName;
-        private String lastName;
-        private String username;
-        private String usernameLowercase;
-        private String role;
+    private String uid;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String usernameLowercase;
+    private String role;
 
-        public User() {
-        }
-
-        public User(String uid,
-                    String firstName,
-                    String lastName,
-                    String username,
-                    String usernameLowercase,
-                    String role) {
-
-            this.uid = uid;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.username = username;
-            this.usernameLowercase = usernameLowercase;
-            this.role = role;
-        }
-
-        public String getUid() {
-            return uid;
-        }
-
-        public void setUid(String uid) {
-            this.uid = uid;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public String getUsernameLowercase() {
-            return usernameLowercase;
-        }
-
-        public void setUsernameLowercase(String usernameLowercase) {
-            this.usernameLowercase = usernameLowercase;
-        }
-
-        public String getRole() {
-            return role;
-        }
-
-        public void setRole(String role) {
-            this.role = role;
-        }
+    // Required empty constructor for Firebase
+    public User() {
     }
 
+    public User(String uid,
+                String firstName,
+                String lastName,
+                String username,
+                String usernameLowercase,
+                String role) {
+
+        this.uid = uid;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.usernameLowercase = usernameLowercase;
+        this.role = role;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsernameLowercase() {
+        return usernameLowercase;
+    }
+
+    public void setUsernameLowercase(String usernameLowercase) {
+        this.usernameLowercase = usernameLowercase;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+}

@@ -37,4 +37,18 @@
 
     <string name="profile_save_failed_account_removed">The profile could not be saved, so the new account was removed. Please try again</string>
     <string name="profile_save_failed_cleanup_failed">The profile could not be saved and automatic cleanup failed. Please contact the administrator before trying again</string>
+    <string name="welcome_to_mr_manager">Welcome to MR Manager</string>
+    <string name="login_subtitle">Log in to manage your group tasks</string>
+
+    <string name="login">Log In</string>
+    <string name="logging_in">Logging in…</string>
+    <string name="dont_have_account">Don’t have an account? Create account</string>
+
+    <string name="login_successful">Login successful</string>
+    <string name="error_incorrect_login">Incorrect username or password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 </resources>
