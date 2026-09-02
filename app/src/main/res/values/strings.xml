@@ -1,3 +1,40 @@
 <resources>
     <string name="app_name">MR_Manager</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_up_subtitle">Create your MR Manager account</string>
+
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="sign_up">Sign Up</string>
+    <string name="creating_account">Creating account…</string>
+    <string name="already_have_account">Already have an account? Log in</string>
+
+    <string name="username_requirements">3–20 characters: letters, numbers and underscores only</string>
+    <string name="password_requirements">Minimum 8 characters: uppercase, lowercase, number and special character</string>
+
+    <string name="error_first_name_required">First name is required</string>
+    <string name="error_last_name_required">Last name is required</string>
+    <string name="error_username_required">Username is required</string>
+    <string name="error_password_required">Password is required</string>
+    <string name="error_confirm_password_required">Please confirm your password</string>
+
+    <string name="error_invalid_first_name">Enter a valid first name</string>
+    <string name="error_invalid_last_name">Enter a valid last name</string>
+    <string name="error_invalid_username">Username must contain 3–20 letters, numbers or underscores</string>
+    <string name="error_weak_password">Password must have at least 8 characters, including uppercase, lowercase, number and special character</string>
+    <string name="error_passwords_do_not_match">Passwords do not match</string>
+    <string name="error_username_taken">This username is already taken</string>
+    <string name="error_invalid_registration_information">The registration information is invalid</string>
+    <string name="error_network">Network error. Check your internet connection and try again</string>
+
+    <string name="registration_successful">Account created successfully. You can now log in</string>
+    <string name="registration_failed">Could not create the account. Please try again</string>
+    <string name="account_creation_unknown_error">The account could not be completed. Please try again</string>
+
+    <string name="profile_save_failed_account_removed">The profile could not be saved, so the new account was removed. Please try again</string>
+    <string name="profile_save_failed_cleanup_failed">The profile could not be saved and automatic cleanup failed. Please contact the administrator before trying again</string>
 </resources>
