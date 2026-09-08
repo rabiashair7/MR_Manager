@@ -182,11 +182,12 @@ public class MainActivity extends AppCompatActivity
 
         } else if (itemId == R.id.nav_admin) {
             if (isAdmin) {
-                Toast.makeText(
-                        this,
-                        "Admin screen will be added later.",
-                        Toast.LENGTH_SHORT
-                ).show();
+                Intent adminIntent = new Intent(
+                        MainActivity.this,
+                        AdminActivity.class
+                );
+
+                startActivity(adminIntent);
             } else {
                 Toast.makeText(
                         this,

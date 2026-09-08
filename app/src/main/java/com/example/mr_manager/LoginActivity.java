@@ -1,6 +1,8 @@
 package com.example.mr_manager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.checkbox.MaterialCheckBox;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +25,15 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String INTERNAL_EMAIL_DOMAIN = "@mrmanager.app";
 
+    private static final String PREFERENCES_NAME =
+            "mr_manager_preferences";
+
+    private static final String KEY_REMEMBER_USERNAME =
+            "remember_username";
+
+    private static final String KEY_SAVED_USERNAME =
+            "saved_username";
+
     private static final Pattern USERNAME_PATTERN =
             Pattern.compile("^[A-Za-z0-9_]{3,20}$");
 
@@ -31,11 +43,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText etLoginUsername;
     private TextInputEditText etLoginPassword;
 
+    private MaterialCheckBox checkRememberUsername;
     private MaterialButton btnLogin;
     private ProgressBar progressBarLogin;
     private TextView tvCreateAccount;
 
     private FirebaseAuth firebaseAuth;
+    private SharedPreferences sharedPreferences;
 
     private boolean loginInProgress = false;
 
@@ -46,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
         initializeViews();
         initializeFirebase();
+        initializeSharedPreferences();
+        loadSavedUsername();
         initializeListeners();
     }
 
@@ -65,6 +81,9 @@ public class LoginActivity extends AppCompatActivity {
         etLoginUsername = findViewById(R.id.etLoginUsername);
         etLoginPassword = findViewById(R.id.etLoginPassword);
 
+        checkRememberUsername =
+                findViewById(R.id.checkRememberUsername);
+
         btnLogin = findViewById(R.id.btnLogin);
         progressBarLogin = findViewById(R.id.progressBarLogin);
         tvCreateAccount = findViewById(R.id.tvCreateAccount);
@@ -72,6 +91,31 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initializeFirebase() {
         firebaseAuth = FirebaseAuth.getInstance();
+    }
+
+    private void initializeSharedPreferences() {
+        sharedPreferences = getSharedPreferences(
+                PREFERENCES_NAME,
+                Context.MODE_PRIVATE
+        );
+    }
+
+    private void loadSavedUsername() {
+        boolean rememberUsername = sharedPreferences.getBoolean(
+                KEY_REMEMBER_USERNAME,
+                false
+        );
+
+        checkRememberUsername.setChecked(rememberUsername);
+
+        if (rememberUsername) {
+            String savedUsername = sharedPreferences.getString(
+                    KEY_SAVED_USERNAME,
+                    ""
+            );
+
+            etLoginUsername.setText(savedUsername);
+        }
     }
 
     private void initializeListeners() {
@@ -113,6 +157,8 @@ public class LoginActivity extends AppCompatActivity {
                     if (loginTask.isSuccessful()
                             && firebaseAuth.getCurrentUser() != null) {
 
+                        saveUsernamePreference(username);
+
                         Toast.makeText(
                                 LoginActivity.this,
                                 R.string.login_successful,
@@ -128,6 +174,21 @@ public class LoginActivity extends AppCompatActivity {
                         ).show();
                     }
                 });
+    }
+
+    private void saveUsernamePreference(String username) {
+        SharedPreferences.Editor editor =
+                sharedPreferences.edit();
+
+        if (checkRememberUsername.isChecked()) {
+            editor.putBoolean(KEY_REMEMBER_USERNAME, true);
+            editor.putString(KEY_SAVED_USERNAME, username);
+        } else {
+            editor.remove(KEY_REMEMBER_USERNAME);
+            editor.remove(KEY_SAVED_USERNAME);
+        }
+
+        editor.apply();
     }
 
     private boolean validateInput(String username, String password) {
@@ -178,6 +239,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setEnabled(!loading);
         tvCreateAccount.setEnabled(!loading);
+        checkRememberUsername.setEnabled(!loading);
 
         progressBarLogin.setVisibility(
                 loading ? View.VISIBLE : View.GONE

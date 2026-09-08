@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class TasksFragment extends Fragment {
@@ -102,6 +104,7 @@ public class TasksFragment extends Fragment {
                     }
                 }
 
+                sortTasksByPriority();
                 taskAdapter.notifyDataSetChanged();
                 updateTasksDisplay();
             }
@@ -125,6 +128,21 @@ public class TasksFragment extends Fragment {
         };
 
         tasksReference.addValueEventListener(tasksListener);
+    }
+
+    private void sortTasksByPriority() {
+        Collections.sort(
+                taskList,
+                new Comparator<Task>() {
+                    @Override
+                    public int compare(Task firstTask, Task secondTask) {
+                        return Integer.compare(
+                                secondTask.getPriority(),
+                                firstTask.getPriority()
+                        );
+                    }
+                }
+        );
     }
 
     private void updateTasksDisplay() {
